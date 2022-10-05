@@ -8,5 +8,11 @@
 
 ; Replace with your application code
 start:
-    inc r16
-    rjmp start
+    .ORG 0
+	SBI DDRC, 7; Set LED as output
+	SBI DDRC, 6; Set SPEAKER as output
+	CBI DDRA, 6; Set RIGHT BUTTON as input
+	CBI DDRD, 4; Set LEFT BUTTON as input
+
+	NOP
+	NOP
