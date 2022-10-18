@@ -27,15 +27,43 @@ start:
 
 	;  --- THE MAIN LOOP BEGINS HERE --- ;
 
-BEGIN:	
-
-		RJMP BEGIN; Program needs to loop
+BEGIN:		LDI R24, 0x10
+	LOOP:	DEC R24
+			CALL DELAY_MS
+			BRNE LOOP
+			CALL TOGGLE_LED
+			RJMP BEGIN; Program needs to loop
 
 
 	; THIS SUBROUTINE ADDS A DELAY OF ~1ms ;
 DELAY_MS:
+				LDI R20, 0xFF
+	LOOP1:		LDI	R21, 0xFF
+	LOOP2:		DEC R21
+				NOP
+				NOP
+				NOP
+				BRNE LOOP2
+				DEC R20
+				NOP
+				NOP
+				NOP
+				BRNE LOOP1
+				RET
 
 
 
+	; TOGGLE LED SUBROUTINE ;
 TOGGLE_LED:
-			OUT
+				SBIS PORTC, 7
+				RJMP TOGGLE_ON
+				SBIC PORTC, 7
+				RJMP TOGGLE_OFF
+				RET
+
+	TOGGLE_ON:		SBI PORTC, 7
+					RET
+	TOGGLE_OFF:		CBI PORTC, 7
+					RET
+
+
