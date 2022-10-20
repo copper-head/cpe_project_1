@@ -1,0 +1,16 @@
+﻿
+avrdude.exe: Version 6.3, compiled on Feb 17 2016 at 09:25:53
+             Copyright (c) 2000-2005 Brian Dean, http://www.bdmicro.com/
+             Copyright (c) 2007-2014 Joerg Wunsch
+
+             System wide configuration file is "C:\Users\Paul\Documents\AVrdude\avrdude.conf"
+
+             Using Port                    : COM4
+             Using Programmer              : avr109
+             Overriding Baud Rate          : 115200
+avrdude.exe: ser_open(): can't open device "\\.\COM4": The system cannot find the file specified.
+
+
+
+avrdude.exe done.  Thank you.
+
