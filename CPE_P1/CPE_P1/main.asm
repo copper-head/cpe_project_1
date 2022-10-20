@@ -53,7 +53,7 @@ DELAY_MS:
 				LDI R20, 0x26	;Number of iterations for the first loop
 	LOOP1_MS:	LDI	R21, 0x43	;Number of iterations for the second loop
 	LOOP2_MS:	DEC R21			;Decrement value for second loop
-				BRNE LOOP2_D	;Repeat loop if the value for second loop is not equal to 0
+				BRNE LOOP2_MS	;Repeat loop if the value for second loop is not equal to 0
 				NOP				; ]
 				NOP				; ]
 				NOP				; ] - NOP's used to get closer to desired time
@@ -61,7 +61,7 @@ DELAY_MS:
 				NOP				; ]
 				NOP				; ]
 				DEC R20			;Decrement value for first loop
-				BRNE LOOP1_D		;Repeat loop if the value for first loop is not equal to 0
+				BRNE LOOP1_MS	;Repeat loop if the value for first loop is not equal to 0
 				RET				;Return to main program		
 
 
