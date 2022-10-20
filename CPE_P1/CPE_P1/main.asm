@@ -2,7 +2,7 @@
 ; CPE_P1.asm
 ;
 ; Created: 10/5/2022 4:17:57 PM
-; Author : Duncan
+; Author : Duncan, Jorge
 ;
 ;
 ; Notes:
@@ -36,21 +36,14 @@ BEGIN:		LDI R24, 0x10
 
 
 	; THIS SUBROUTINE ADDS A DELAY OF ~1ms ;
-	; Jorge will work on the delay function ;
 DELAY_MS:
-				LDI R20, 0xFF
-	LOOP1:		LDI	R21, 0xFF
-	LOOP2:		DEC R21
-				NOP
-				NOP
-				NOP
-				BRNE LOOP2
-				DEC R20
-				NOP
-				NOP
-				NOP
-				BRNE LOOP1
-				RET
+				LDI R20, 0x27	;Number of iterations for the first loop
+	LOOP1:		LDI	R21, 0x43	;Number of iterations for the second loop
+	LOOP2:		DEC R21			;Decrement value for second loop
+				BRNE LOOP2		;Repeat loop if the value for second loop is not equal to 0
+				DEC R20			;Decrement value for first loop
+				BRNE LOOP1		;Repeat loop if the value for first loop is not equal to 0
+				RET				;Return to main program
 
 
 
