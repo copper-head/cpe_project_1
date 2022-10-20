@@ -2,7 +2,7 @@
 ; AssemblerApplication1.asm
 ;
 ; Created: 10/18/2022 5:22:48 PM
-; Author : Duncan, Jorge, Tony
+; Author : Tony
 ;
 
 
@@ -81,8 +81,8 @@ TOGGLE_LED:
 	*/
 	// 0 1 2 3 4 5 6 7 
 	// X 1 2 3 y 1 2 3
-clb:
-	sbis PIND,6 ;skip if button pressed
+clb: ;check left button
+	sbis PIND,4 ;skip if button pressed
 		rjmp lbnot
 	sbrs R30,2 ;skip if >=4
 		ret ;return because we dont want to hold the button down for too long
@@ -94,7 +94,7 @@ clb:
 	sts lb, R30 ;store lb+1 to lb, lb = 1|2|3|4
 	ret ;done with this iteration of checking while the button is down
 
-lbnot: 
+lbnot: ;left button not pressed
 	ldi R31,0b00000000 ;set to 0
 	lds R30,lb ;if lb=0
 	cpse R30,R31 ;compare ld and 0, skip if equal
@@ -104,4 +104,29 @@ lbnot:
 	sbrc R30,8 ;skip if we did NOT hit 8
 		ldi R30,0x00 ;reset the lb/treg count
 	sts lb,R30 ;store R30 into lb, =5|6|7|0
+	ret ;done with this iteration of checking if the buttin is up
+
+crb: ;check right button
+	sbis PINF,6 ;skip if button pressed
+		rjmp rbnot
+	sbrs R30,2 ;skip if >=4
+		ret ;return because we dont want to hold the button down for too long
+	;lb = 0|1|2|3
+	lds R30,rb ;set R30 to lb
+	inc R30 ;treg = 1|2|3|4
+	sbrc R30,2 ;skip if we did NOT hit 4
+		inc COUNTER_NUM ;if the button has been held for 4 counts, increment the light lvl
+	sts rb, R30 ;store lb+1 to lb, lb = 1|2|3|4
+	ret ;done with this iteration of checking while the button is down
+
+rbnot: ;right button not pressed
+	ldi R31,0b00000000 ;set to 0
+	lds R30,rb ;if lb=0
+	cpse R30,R31 ;compare ld and 0, skip if equal
+		ret ;if ld = 0
+	lds R30,rb ;set R30 into lb, 4|5|6|7
+	inc R30 ; = 5|6|7|8
+	sbrc R30,8 ;skip if we did NOT hit 8
+		ldi R30,0x00 ;reset the lb/treg count
+	sts rb,R30 ;store R30 into lb, =5|6|7|0
 	ret ;done with this iteration of checking if the buttin is up
