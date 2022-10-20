@@ -10,7 +10,6 @@
 start:
 	.DEF CURRENT_NUM = R16; This register needs to be reserved for holding the current level for the led timing (0-24)
 	.DEF NUM_COUNTER = R17; This register is the iterator that the code will use
-	.DEF treg = R30; Tony's Register. going to be used to access data space and modify flags stored in data space
 	.DEF rb = 0xD0; the state that the Right Button is in, see Tony's Buttons Subroutines
 	.DEF lb = 0xD1; the state that the Left Button is in, see Tony's Buttons Subroutines
 	 
