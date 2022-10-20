@@ -37,10 +37,16 @@ BEGIN:		LDI R24, 0x10
 
 	; THIS SUBROUTINE ADDS A DELAY OF ~1ms ;
 DELAY_MS:
-				LDI R20, 0x27	;Number of iterations for the first loop
+				LDI R20, 0x26	;Number of iterations for the first loop
 	LOOP1:		LDI	R21, 0x43	;Number of iterations for the second loop
 	LOOP2:		DEC R21			;Decrement value for second loop
 				BRNE LOOP2		;Repeat loop if the value for second loop is not equal to 0
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
 				DEC R20			;Decrement value for first loop
 				BRNE LOOP1		;Repeat loop if the value for first loop is not equal to 0
 				RET				;Return to main program
