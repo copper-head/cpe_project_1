@@ -16,9 +16,9 @@ start:
     .ORG 0
 	LDI CURRENT_NUM, 0; Current num starts at 0 and gets changed by the user pressing the push button
 	LDI NUM_COUNTER, 24; NUM_COUNTER starts at 24 and decrements 
-	ldi treg,0x00 ;set treg to 0x00
-	sts rb,treg ;set right button to treg, aka 0x00
-	sts lb,treg ;set left button to treg, aka 0x00
+	ldi R30, 0x00 ;general register to have 0x00
+	sts rb,R30 ;set right button 0x00
+	sts lb,R30 ;set left button 0x00
 	SBI DDRC, 7; Set LED as output
 	SBI DDRC, 6; Set SPEAKER as output
 	CBI DDRF, 6; Set RIGHT BUTTON as input
